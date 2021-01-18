@@ -15,11 +15,11 @@ mi_router_uptime <%= stats.upTime %>
 mi_router_uptime <%= stats.temperature %>
 
 # HELP mi_router_devices_total Router devices total
-# TYPE mi_router_devices_total counter
+# TYPE mi_router_devices_total gauge
 mi_router_devices_total <%= stats.count.all %>
 
 # HELP mi_router_devices_online Router devices total
-# TYPE mi_router_devices_online counter
+# TYPE mi_router_devices_online gauge
 mi_router_devices_online <%= stats.count.online %>
 
 
@@ -82,6 +82,6 @@ mi_router_wan_maxupspeed <%= stats.wan.maxuploadspeed %>
 <% } %>
 
 # HELP mi_router_device_online Router device online
-# TYPE mi_router_device_online counter
+# TYPE mi_router_device_online gauge
 <% for (const device of stats.dev) { %>mi_router_device_online{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.online %>
 <% } %>
