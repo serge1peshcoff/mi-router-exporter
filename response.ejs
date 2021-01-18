@@ -1,0 +1,87 @@
+# HELP mi_router_memory_usage Router memory usage
+# TYPE mi_router_memory_usage gauge
+mi_router_memory_usage <%= stats.mem.usage %>
+
+# HELP mi_router_cpu_usage Router CPU usage
+# TYPE mi_router_cpu_usage gauge
+mi_router_cpu_usage <%= stats.cpu.load %>
+
+# HELP mi_router_uptime Router uptime
+# TYPE mi_router_uptime gauge
+mi_router_uptime <%= stats.upTime %>
+
+# HELP mi_router_uptime Router temperature
+# TYPE mi_router_uptime gauge
+mi_router_uptime <%= stats.temperature %>
+
+# HELP mi_router_devices_total Router devices total
+# TYPE mi_router_devices_total counter
+mi_router_devices_total <%= stats.count.all %>
+
+# HELP mi_router_devices_online Router devices total
+# TYPE mi_router_devices_online counter
+mi_router_devices_online <%= stats.count.online %>
+
+
+
+
+# HELP mi_router_wan_downspeed Router WAN downspeed
+# TYPE mi_router_wan_downspeed gauge
+mi_router_wan_downspeed <%= stats.wan.downspeed %>
+
+# HELP mi_router_wan_upspeed Router WAN upspeed
+# TYPE mi_router_wan_upspeed gauge
+mi_router_wan_upspeed <%= stats.wan.upspeed %>
+
+# HELP mi_router_wan_download Router WAN download
+# TYPE mi_router_wan_download gauge
+mi_router_wan_download <%= stats.wan.download %>
+
+# HELP mi_router_wan_upload Router WAN upload
+# TYPE mi_router_wan_upload gauge
+mi_router_wan_upload <%= stats.wan.upload %>
+
+# HELP mi_router_wan_maxdownspeed Router WAN max download speed
+# TYPE mi_router_wan_maxdownspeed gauge
+mi_router_wan_maxdownspeed <%= stats.wan.maxdownloadspeed %>
+
+# HELP mi_router_wan_maxupspeed Router WAN max upload speed
+# TYPE mi_router_wan_maxupspeed gauge
+mi_router_wan_maxupspeed <%= stats.wan.maxuploadspeed %>
+
+
+
+# HELP mi_router_device_upload Router device upload
+# TYPE mi_router_device_upload gauge
+<% for (const device of stats.dev) { %>mi_router_device_upload{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.upload %>
+<% } %>
+
+# HELP mi_router_device_download Router device download
+# TYPE mi_router_device_download gauge
+<% for (const device of stats.dev) { %>mi_router_device_download{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.download %>
+<% } %>
+
+# HELP mi_router_device_upspeed Router device upspeed
+# TYPE mi_router_device_upspeed gauge
+<% for (const device of stats.dev) { %>mi_router_device_upspeed{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.upspeed %>
+<% } %>
+
+# HELP mi_router_device_downspeed Router device downspeed
+# TYPE mi_router_device_downspeed gauge
+<% for (const device of stats.dev) { %>mi_router_device_downspeed{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.downspeed %>
+<% } %>
+
+# HELP mi_router_device_maxuploadspeed Router device max upload speed
+# TYPE mi_router_device_maxuploadspeed gauge
+<% for (const device of stats.dev) { %>mi_router_device_maxuploadspeed{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.maxuploadspeed %>
+<% } %>
+
+# HELP mi_router_device_maxdownloadspeed Router device max download speed
+# TYPE mi_router_device_maxdownloadspeed gauge
+<% for (const device of stats.dev) { %>mi_router_device_downloadspeed{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.maxdownloadspeed %>
+<% } %>
+
+# HELP mi_router_device_online Router device online
+# TYPE mi_router_device_online counter
+<% for (const device of stats.dev) { %>mi_router_device_online{mac="<%= device.mac %>", name="<%= device.devname %>"} <%= device.online %>
+<% } %>
