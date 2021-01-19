@@ -5,11 +5,12 @@ const logger = require('./logger');
 const morgan = require('./morgan');
 const MiRouter = require('./MiRouter');
 
+const router = new MiRouter({ password: process.env.PASSWORD });
+
 const server = express();
 server.use(morgan);
 server.get('/metrics', async (req, res) => {
     try {
-        const router = new MiRouter({ password: process.env.PASSWORD });
         const stats = await router.status();
         logger.debug({ stats }, 'Stats from Mi Router');
 

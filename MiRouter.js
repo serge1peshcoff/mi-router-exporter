@@ -1,6 +1,8 @@
 const request = require('request-promise-native');
 const crypto = require('crypto');
 
+const logger = require('./logger');
+
 class MiRouter {
     constructor(params) {
         if (!params.password) {
@@ -45,17 +47,39 @@ class MiRouter {
             },
             timeout: 5000,
         });
+
+        this.loginResponse = response;
+        this.token = response.token;
         return response;
     }
 
-    async status() {
-        const loginBody = await this.login();
+    async getStatus() {
         const response = await request({
-            url: `http://${this.url}/cgi-bin/luci/;stok=${loginBody.token}/api/misystem/status`,
+            url: `http://${this.url}/cgi-bin/luci/;stok=${this.token}/api/misystem/status`,
             json: true,
             timeout: 5000,
         });
         return response;
+    }
+
+    async status() {
+        if (!token) {
+            logger.warn('No token set, logging in.');
+            await this.login();
+        }
+
+        try {
+            logger.info('Fetching status...');
+            const result = await this.getStatus();
+            return result;
+        } catch (err) {
+            logger.error({ err }, 'Error fetching status, re-logging in...');
+            await this.login();
+
+            logger.info('Fetching status after relogin...');
+            const result = await this.getStatus();
+            return result;
+        }
     }
 }
 
