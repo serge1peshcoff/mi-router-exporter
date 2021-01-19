@@ -42,7 +42,8 @@ class MiRouter {
                 password,
                 logtype: 2,
                 nonce
-            }
+            },
+            timeout: 5000,
         });
         return response;
     }
@@ -51,7 +52,8 @@ class MiRouter {
         const loginBody = await this.login();
         const response = await request({
             url: `http://${this.url}/cgi-bin/luci/;stok=${loginBody.token}/api/misystem/status`,
-            json: true
+            json: true,
+            timeout: 5000,
         });
         return response;
     }
