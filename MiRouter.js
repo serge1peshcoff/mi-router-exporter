@@ -63,7 +63,7 @@ class MiRouter {
     }
 
     async status() {
-        if (!token) {
+        if (!this.token) {
             logger.warn('No token set, logging in.');
             await this.login();
         }
