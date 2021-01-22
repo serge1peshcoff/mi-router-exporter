@@ -1,5 +1,7 @@
 const request = require('request-promise-native');
 const crypto = require('crypto');
+const getMAC = require('getmac');
+
 
 const logger = require('./logger');
 
@@ -13,7 +15,7 @@ class MiRouter {
         this.password = params.password;
 
         this.publicKey = params.publicKey || 'a2ffa5c9be07488bbb04a3a47d3c5f6a';
-        this.deviceId = params.deviceId || 'f0:18:98:4e:6f:fe';
+        this.deviceId = params.deviceId || getMAC();
     }
 
     sha1(data) {
