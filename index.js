@@ -23,6 +23,6 @@ server.get('/metrics', async (req, res) => {
     }
 });
 
-const port = 3000;
+const port = 3030;
 logger.info(`Server listening to ${port}, metrics exposed on /metrics endpoint`);
 server.listen(port);
