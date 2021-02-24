@@ -2,7 +2,6 @@ const request = require('request-promise-native');
 const crypto = require('crypto');
 const getMAC = require('getmac');
 
-
 const logger = require('./logger');
 
 class MiRouter {
@@ -18,7 +17,7 @@ class MiRouter {
         this.deviceId = params.deviceId || getMAC();
     }
 
-    sha1(data) {
+    static sha1(data) {
         return crypto.createHash('sha1').update(data, 'binary').digest('hex');
     }
 
@@ -30,7 +29,7 @@ class MiRouter {
     }
 
     createPasswordHash(nonce, pwd) {
-        return this.sha1(nonce + this.sha1(pwd + this.publicKey)).toString();
+        return MiRouter.sha1(nonce + MiRouter.sha1(pwd + this.publicKey)).toString();
     }
 
     async login() {
@@ -56,7 +55,7 @@ class MiRouter {
     }
 
     async getStatus() {
-        return await request({
+        return request({
             url: `http://${this.url}/cgi-bin/luci/;stok=${this.token}/api/misystem/status`,
             json: true,
             timeout: 5000,
@@ -77,7 +76,7 @@ class MiRouter {
             await this.login();
 
             logger.info('Fetching status after relogin...');
-            return await this.getStatus();
+            return this.getStatus();
         }
     }
 }
