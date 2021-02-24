@@ -56,12 +56,11 @@ class MiRouter {
     }
 
     async getStatus() {
-        const response = await request({
+        return await request({
             url: `http://${this.url}/cgi-bin/luci/;stok=${this.token}/api/misystem/status`,
             json: true,
             timeout: 5000,
         });
-        return response;
     }
 
     async status() {
@@ -72,15 +71,13 @@ class MiRouter {
 
         try {
             logger.info('Fetching status...');
-            const result = await this.getStatus();
-            return result;
+            return await this.getStatus();
         } catch (err) {
             logger.error({ err }, 'Error fetching status, re-logging in...');
             await this.login();
 
             logger.info('Fetching status after relogin...');
-            const result = await this.getStatus();
-            return result;
+            return await this.getStatus();
         }
     }
 }
