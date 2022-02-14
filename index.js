@@ -5,7 +5,7 @@ const logger = require('./logger');
 const morgan = require('./morgan');
 const MiRouter = require('./MiRouter');
 
-const router = new MiRouter({ password: process.env.PASSWORD });
+const router = new MiRouter({ url: process.env.URL, password: process.env.PASSWORD });
 
 const server = express();
 server.use(morgan);
