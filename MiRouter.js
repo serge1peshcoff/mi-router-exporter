@@ -14,7 +14,7 @@ class MiRouter {
         this.password = params.password;
 
         this.publicKey = params.publicKey || 'a2ffa5c9be07488bbb04a3a47d3c5f6a';
-        this.deviceId = params.deviceId || getMAC();
+        this.deviceId = params.deviceId || getMAC.default();
     }
 
     static sha1(data) {
