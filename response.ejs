@@ -22,6 +22,9 @@ mi_router_devices_total <%= stats.count.all %>
 # TYPE mi_router_devices_online gauge
 mi_router_devices_online <%= stats.count.online %>
 
+# HELP mi_router_devices_uptime Router uptime
+# TYPE mi_router_devices_uptime counter
+mi_router_uptime <%= stats.uptime %>
 
 
 
