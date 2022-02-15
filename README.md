@@ -20,7 +20,7 @@ docker build -t mi-router-exporter .
 ```
 docker run -it \
     -d --name=mi-router-exporter \
-    -e URL=<insert your router IP [default: 192.168.31.1> \
+    -e URL=<insert your router IP [<OPTIONAL> - default: 192.168.31.1> \
     -e PASSWORD=<insert your admin password here> \
     -p 3030:3030 \
     --label com.centurylinklabs.watchtower.enable=false \ # so it won't be restarter by Watchtower if it's running
