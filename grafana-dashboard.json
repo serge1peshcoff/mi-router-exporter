@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 17,
-  "iteration": 1644913336281,
+  "iteration": 1644915585827,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -53,7 +53,7 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 6,
+        "w": 4,
         "x": 0,
         "y": 0
       },
@@ -107,8 +107,8 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 6,
-        "x": 6,
+        "w": 4,
+        "x": 4,
         "y": 0
       },
       "id": 9,
@@ -141,6 +141,64 @@
         }
       ],
       "title": "Total Upload",
+      "type": "stat"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "mi_router_uptime",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "Uptime"
+        }
+      ],
+      "title": "Uptime",
       "type": "stat"
     },
     {
@@ -829,13 +887,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Mi Router",
   "uid": "P4jxKhfMk",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
