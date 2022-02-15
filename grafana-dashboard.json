@@ -22,6 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 17,
+  "iteration": 1644913336281,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -264,10 +265,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -304,16 +301,25 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "mi_router_wan_downspeed",
           "interval": "",
           "legendFormat": "Download",
-          "refId": "A"
+          "refId": "WAN Download Speed"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "mi_router_wan_upspeed",
           "interval": "",
           "legendFormat": "Upload",
-          "refId": "B"
+          "refId": "WAN Upload Speed"
         }
       ],
       "thresholds": [],
@@ -443,10 +449,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -485,7 +487,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mi_router_device_downspeed",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "mi_router_device_downspeed{name=~\"$device\"}",
           "interval": "",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -528,10 +535,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -570,7 +573,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mi_router_device_upspeed",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
+          "expr": "mi_router_device_upspeed{name=~\"$device\"}",
           "interval": "",
           "legendFormat": "{{name}}",
           "refId": "B"
@@ -609,15 +617,43 @@
       }
     }
   ],
-  "refresh": "5m",
+  "refresh": "1m",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "definition": "label_values(mi_router_device_online, name)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Device",
+        "multi": true,
+        "name": "device",
+        "options": [],
+        "query": {
+          "query": "label_values(mi_router_device_online, name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
