@@ -1,9 +1,9 @@
-# mi-router-4-exporter
+# mi-router-exporter
 
-Reads Mi Router 4 data from the API and exports it in a Prometheus format.
+Reads Mi Router data from the API and exports it in a Prometheus format.
 
 ## How does it work?
-- It fetches the data from the Mi Router 4 API ...
+- It fetches the data from the Mi Router API ...
 - ... parses it ...
 - ... and exposes it in a format that Prometheus can consume.
 
@@ -12,19 +12,20 @@ Reads Mi Router 4 data from the API and exports it in a Prometheus format.
 2. Build the container:
 
 ```
-docker build -t mi-router-4-exporter .
+docker build -t mi-router-exporter .
 ```
 
 3. Run the container (for configuration, see below):
 
 ```
 docker run -it \
-    -d --name=mi-router-4-exporter \
+    -d --name=mi-router-exporter \
+    -e URL=<insert your router IP [<OPTIONAL> - default: 192.168.31.1> \
     -e PASSWORD=<insert your admin password here> \
     -p 3030:3030 \
     --label com.centurylinklabs.watchtower.enable=false \ # so it won't be restarter by Watchtower if it's running
     --restart unless-stopped \ # so it would start together with the system
-    mi-router-4-exporter
+    mi-router-exporter
 ```
 
 4. Open `http://localhost:3030` in browser, it should display metrics.
@@ -35,7 +36,7 @@ docker run -it \
 
 All the configuration is done through the environmental variables.
 - `LOG_LEVEL` - integration logging level. Default: `warn`. If something isn't working, try setting it to `debug` and check what's inside.
-- `PASSWORD` - Mi Router 4 admin URL. Will throw an exception if this is not set.
+- `PASSWORD` - Mi Router admin URL. Will throw an exception if this is not set.
 
 # Grafana integration
 

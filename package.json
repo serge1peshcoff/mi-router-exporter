@@ -1,5 +1,5 @@
 {
-  "name": "mi-router-4-exporter",
+  "name": "mi-router-exporter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,17 +11,17 @@
   "license": "ISC",
   "dependencies": {
     "bunyan": "^1.8.15",
-    "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "getmac": "^5.17.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "getmac": "^5.20.0",
     "morgan": "^1.10.0",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9"
   },
   "devDependencies": {
-    "eslint": "^7.20.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "husky": "^5.1.1"
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "husky": "^7.0.4"
   }
 }

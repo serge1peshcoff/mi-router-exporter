@@ -7,12 +7,12 @@ mi_router_memory_usage <%= stats.mem.usage %>
 mi_router_cpu_usage <%= stats.cpu.load %>
 
 # HELP mi_router_uptime Router uptime
-# TYPE mi_router_uptime gauge
+# TYPE mi_router_uptime counter
 mi_router_uptime <%= stats.upTime %>
 
-# HELP mi_router_uptime Router temperature
-# TYPE mi_router_uptime gauge
-mi_router_uptime <%= stats.temperature %>
+# HELP mi_router_temperature Router temperature
+# TYPE mi_router_temperature gauge
+mi_router_temperature <%= stats.temperature %>
 
 # HELP mi_router_devices_total Router devices total
 # TYPE mi_router_devices_total gauge
@@ -21,7 +21,6 @@ mi_router_devices_total <%= stats.count.all %>
 # HELP mi_router_devices_online Router devices total
 # TYPE mi_router_devices_online gauge
 mi_router_devices_online <%= stats.count.online %>
-
 
 
 
